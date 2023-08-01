@@ -6,6 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.seleniumFramework.ExtentReport.setupReport;
+
+
 public class DriverManager {
 
     public static WebDriver driver;
@@ -15,6 +18,7 @@ public class DriverManager {
     }
 
     public void chromeDriverInitialization() {
+        setupReport();
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();

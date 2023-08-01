@@ -5,9 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.seleniumFramework.DriverManager;
 import org.seleniumFramework.pojos.Configs;
 import org.seleniumFramework.utils.FileUtils;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
 import java.io.IOException;
+import static org.seleniumFramework.ExtentReport.*;
 
 
 public class Page {
@@ -20,7 +21,6 @@ public class Page {
         driver.chromeDriverInitialization();
         testConfigs = FileUtils.getTestConfigsFromJson();
     }
-
 
     //TODO: move below functions to wrappers
     public void navigateTo(String url) {
@@ -37,7 +37,11 @@ public class Page {
         clickBtn.click();
     }
 
-
+    @AfterSuite
+    public void cleanUp() {
+        extentReports.flush();
+        //driver.getDriver().quit();
+    }
 }
 
 
